@@ -15,8 +15,8 @@
                 {action: 'Collect Ticket', done: true}
             ]
         }
-        var todo = angular.module('todoApp', []);
-        todo.controller('todoCtrl'function($scope){
+        var todoApp = angular.module('todoApp', []);
+        todoApp.controller('todoCtrl', function($scope){
             $scope.todo = model;
         });
     </script>
@@ -24,7 +24,9 @@
 
 <body ng-controller="todoCtrl">
     <div class="page-header">
-        <h1>Arun's TODO List</h1>
+        <h1>{{todo.user}}'s TODO List
+            <span class="lable label-default">{{todo.items.length}}</span>
+        </h1>
     </div>
     <div class="panel">
         <div class="input-group">
@@ -41,9 +43,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td>Buy flowers</td><td>No</td></tr>
-                <tr><td>Get shoes</td><td>No</td></tr>
-                <tr><td>Collect Ticket</td><td>Yes</td></tr>
+                <tr ng-repeat="item in todo.items">
+                    <td>{{item.action}}</td>
+                    <td>{{item.done}}</td>
+                </tr>
             </tbody>
         </table>
     </div>
